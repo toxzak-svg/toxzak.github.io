@@ -1,0 +1,17 @@
+let tg = window.Telegram.WebApp;
+
+// Expand to full height
+tg.expand();
+
+// Show user info
+const userInfo = document.getElementById("user-info");
+if (tg.initDataUnsafe.user) {
+  userInfo.innerText = `Hello, ${tg.initDataUnsafe.user.first_name}!`;
+} else {
+  userInfo.innerText = "Hello, guest!";
+}
+
+// Send data back to bot
+document.getElementById("send-data").addEventListener("click", () => {
+  tg.sendData(JSON.stringify({ action: "clicked_button", time: Date.now() }));
+});
